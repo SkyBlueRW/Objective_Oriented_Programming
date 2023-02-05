@@ -18,56 +18,86 @@ void printMenu()
     std::cout << "============" << std::endl;
 }
 
-int getUserOption()
+void printHelp()
 {
-    int userOption;
-    
-    std::cout << "Type in 1-6" << std::endl;
-    std::cin >> userOption;
-    std::cout << "You chose: " << userOption << std::endl;
-    return userOption;
+    std::cout << "Help - your aim is to make money. Analyze the makret and make bids and offers" << std::endl;
 }
 
-void processUserOption(int userOption)
+void printMarketStats()
 {
-    if (userOption == 0)
-    {
-        std::cout << "Invalid choice. Choose 1-6" << std::endl;
-    }
-    if (userOption == 1)
-    {
-        std::cout << "Help - your aim is to make money. Analyze the makret and make bids and offers" << std::endl;
-    }
-    if (userOption == 2)
-    {
-        std::cout << "Market looks good" << std::endl;
-    }
-    if (userOption == 3)
-    {
-        std::cout << "Make an offer - enter the amount" << std::endl;
-    }
-    if (userOption == 4)
-    {
-        std::cout << "Make a bid - enter the amount" << std::endl;
-    }
-    if (userOption == 5)
-    {
-        std::cout << "Your wallet is empty" << std::endl;
-    }
-    if (userOption == 6)
-    {
-        std::cout << "Going to the next step" << std::endl;
-    }
+    std::cout << "Market looks good" << std::endl;
 }
 
-int main()
+void enterOffer()
 {
-    while(true)
-    {
-
-        printMenu();
-        int userOption = getUserOption();
-        processUserOption(userOption);
-    }
-    return 0;
+    std::cout << "Make an offer - enter the amount" << std::endl;
 }
+
+void enterBid()
+{
+    std::cout << "Make a bid - enter the amount" << std::endl;
+}
+
+void printWallet()
+{
+    std::cout << "Your wallet is empty" << std::endl;
+}
+
+void gotNextTimeFrame()
+{
+    std::cout << "Going to the next step" << std::endl;
+}
+
+    int getUserOption()
+    {
+        int userOption;
+
+        std::cout << "Type in 1-6" << std::endl;
+        std::cin >> userOption;
+        std::cout << "You chose: " << userOption << std::endl;
+        return userOption;
+    }
+
+    void processUserOption(int userOption)
+    {
+        if (userOption == 0)
+        {
+            std::cout << "Invalid choice. Choose 1-6" << std::endl;
+        }
+        if (userOption == 1)
+        {
+            printHelp();
+        }
+        if (userOption == 2)
+        {
+            printMarketStats();
+        }
+        if (userOption == 3)
+        {
+            enterOffer();
+        }
+        if (userOption == 4)
+        {
+            enterBid();
+        }
+        if (userOption == 5)
+        {
+            printWallet();
+        }
+        if (userOption == 6)
+        {
+            gotNextTimeFrame();
+        }
+    }
+
+    int main()
+    {
+        while (true)
+        {
+
+            printMenu();
+            int userOption = getUserOption();
+            processUserOption(userOption);
+        }
+        return 0;
+    }
