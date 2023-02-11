@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
 void printMenu()
 {
@@ -48,56 +50,78 @@ void gotNextTimeFrame()
     std::cout << "Going to the next step" << std::endl;
 }
 
-    int getUserOption()
+int getUserOption()
+{
+    int userOption;
+
+    std::cout << "Type in 1-6" << std::endl;
+    std::cin >> userOption;
+    std::cout << "You chose: " << userOption << std::endl;
+    return userOption;
+}
+
+void processUserOption(int userOption)
+{
+    if (userOption == 0)
     {
-        int userOption;
-
-        std::cout << "Type in 1-6" << std::endl;
-        std::cin >> userOption;
-        std::cout << "You chose: " << userOption << std::endl;
-        return userOption;
+        std::cout << "Invalid choice. Choose 1-6" << std::endl;
     }
-
-    void processUserOption(int userOption)
+    if (userOption == 1)
     {
-        if (userOption == 0)
-        {
-            std::cout << "Invalid choice. Choose 1-6" << std::endl;
-        }
-        if (userOption == 1)
-        {
-            printHelp();
-        }
-        if (userOption == 2)
-        {
-            printMarketStats();
-        }
-        if (userOption == 3)
-        {
-            enterOffer();
-        }
-        if (userOption == 4)
-        {
-            enterBid();
-        }
-        if (userOption == 5)
-        {
-            printWallet();
-        }
-        if (userOption == 6)
-        {
-            gotNextTimeFrame();
-        }
+        printHelp();
     }
-
-    int main()
+    if (userOption == 2)
     {
-        while (true)
-        {
-
-            printMenu();
-            int userOption = getUserOption();
-            processUserOption(userOption);
-        }
-        return 0;
+        printMarketStats();
     }
+    if (userOption == 3)
+    {
+        enterOffer();
+    }
+    if (userOption == 4)
+    {
+        enterBid();
+    }
+    if (userOption == 5)
+    {
+        printWallet();
+    }
+    if (userOption == 6)
+    {
+        gotNextTimeFrame();
+    }
+}
+
+int main()
+{
+    while (true)
+    {
+
+        enum class OrderBookType
+        {
+            bid,
+            ask
+        };
+
+        std::vector<double> prices;
+        std::vector<double> amounts;
+        std::vector<std::string> timestamps;
+        std::vector<std::string> products;
+        std::vector<OrderBookType> orderTypes;
+
+        prices.push_back(5000.1);
+        amounts.push_back(0.0001);
+        timestamps.push_back("2020/03/17 17:01:24.884492");
+        products.push_back("BTC/USDT");
+        orderTypes.push_back(OrderBookType::bid);
+
+        
+
+        printMenu();
+        int userOption = getUserOption();
+        processUserOption(userOption);
+    }
+    return 0;
+}
+
+
