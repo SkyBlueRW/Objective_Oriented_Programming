@@ -2,6 +2,34 @@
 #include <string>
 #include <vector>
 
+enum class OrderBookType{bid, ask};
+
+class OrderBookEntry
+{
+    public:
+        // Constructor
+        OrderBookEntry( double _price,
+                        double _amount,
+                        std::string _timestamp,
+                        std::string _product,
+                        OrderBookType _orderType)
+        : price(_price),
+          amount(_amount),
+          timestamp(_timestamp),
+          product(_product),
+          orderType(_orderType)
+        {
+
+        }
+
+
+        double price;
+        double amount;
+        std::string timestamp;
+        std::string product;
+        OrderBookType orderType;
+};
+
 void printMenu()
 {
     // 1 print help
@@ -94,33 +122,39 @@ void processUserOption(int userOption)
 
 int main()
 {
-    while (true)
+    // while (true)
+    // {
+    //     printMenu();
+    //     int userOption = getUserOption();
+    //     processUserOption(userOption);
+    // }
+
+    std::vector<OrderBookEntry> orders;
+
+    orders.push_back(OrderBookEntry{1000,
+                                    0.002,
+                                    "2020/03/17 17:01:24.884492",
+                                    "BTC/USDT",
+                                    OrderBookType::bid});
+
+    orders.push_back(OrderBookEntry{2000,
+                                    0.002,
+                                    "2020/03/17 17:01:24.884492",
+                                    "BTC/USDT",
+                                    OrderBookType::bid});
+
+    // The first implementation
+    //& means do not make a copy 
+    for (OrderBookEntry& order: orders)
     {
-
-        enum class OrderBookType
-        {
-            bid,
-            ask
-        };
-
-        std::vector<double> prices;
-        std::vector<double> amounts;
-        std::vector<std::string> timestamps;
-        std::vector<std::string> products;
-        std::vector<OrderBookType> orderTypes;
-
-        prices.push_back(5000.1);
-        amounts.push_back(0.0001);
-        timestamps.push_back("2020/03/17 17:01:24.884492");
-        products.push_back("BTC/USDT");
-        orderTypes.push_back(OrderBookType::bid);
-
-        
-
-        printMenu();
-        int userOption = getUserOption();
-        processUserOption(userOption);
+        std::cout << "This price is " << order.price << std::endl;
     }
+    // The second implementation
+    for (unsigned int i = 0; i < orders.size() ; ++i)
+    {
+        std::cout << "This price is " << orders[i].price << std::endl;
+    }
+
     return 0;
 }
 
