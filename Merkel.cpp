@@ -4,6 +4,7 @@
 #include <fstream>
 #include "OrderBookEntry.h"
 #include "MerkelMain.h"
+#include "csvReader.h"
 
 
 std::vector<std::string> tokenise(std::string csvLine, char separator)
@@ -37,46 +38,24 @@ std::vector<std::string> tokenise(std::string csvLine, char separator)
 
 int main()
 {
+
 //    MerkelMain app{};
 //    app.init();
 
-    std::ifstream csvFile{"20200317.csv"};
-    std::string line;
-    std::vector<std::string> tokens;
+    //std::ifstream csvFile{"20200317.csv"};
+    //std::string line;
+    //std::vector<std::string> tokens;
 
 
-    if (csvFile.is_open())
-    {
-        std::cout << "File open " << std::endl;
 
-        while (std::getline(csvFile, line))
-        {
-            // Exception handling for the size
-            tokens = tokenise(line, ',');
-            if (tokens.size() != 5) // bad
-            {
-                std::cout << "Bad line " << std::endl;
-                continue;
-            }
-            // Exception handling for data type
-            try {
-                double price = std::stod(tokens[3]);
-                double amount = std::stod(tokens[4]);
-                std::cout << price << ": amount of " << amount << std::endl;
-            }
-            catch(std::exception& e) {
-                std::cout << "Bad float! " << tokens[3] << std::endl;
-                std::cout << "Bad float! " << tokens[4] << std::endl;
-                break;
-            }
-            
-        }
-        csvFile.close();
-    }
-    else
-    {
-        std::cout << "Could not open file " << std::endl;
-    }
+    //    csvFile.close();
+    //}
+    //else
+    //{
+    //    std::cout << "Could not open file " << std::endl;
+    //}
+
+    csvReader reader;
 
     return 0;
 
