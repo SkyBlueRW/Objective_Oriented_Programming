@@ -10,7 +10,7 @@ public:
 	csvReader();
 
 	// Can call it without create an instance
-	static std::vector<OrderBookEntry> readCSV(std::string csvFile);
+	static std::vector<OrderBookEntry> readCSV(std::string csvFilename);
 
 private:
 	static std::vector<std::string> tokenise(std::string csvLine, char separator);
