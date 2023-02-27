@@ -14,6 +14,15 @@ public:
 	std::vector<OrderBookEntry> getOrders(OrderBookType type, 
 										  std::string product,
 										  std::string timestamp);
+	/** returns the earliest time in the order book */
+	std::string getEarliestTime();
+	/** returns the next time after the sent time in the order book*/
+	std::string getNextTime(std::string timestamp);
+
+	static double getHighPrice(std::vector<OrderBookEntry>& orders);
+	static double getLowPrice(std::vector<OrderBookEntry>& orders);
+	static double getMeanPrice(std::vector<OrderBookEntry>& orders);
+
 
 private:
 	std::vector<OrderBookEntry> orders;

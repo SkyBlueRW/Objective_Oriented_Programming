@@ -2,6 +2,7 @@
 #pragma once
 #include <vector>
 #include "OrderBookEntry.h"
+#include "OrderBook.h"
 
 class MerkelMain
 {
@@ -14,7 +15,6 @@ public:
     // Can be called via public function
     // Generally good to expose less things to the outside world
 private:
-    void loadOrderBook();
     void printMenu();
     void printHelp();
     void printMarketStats();
@@ -25,6 +25,7 @@ private:
     int getUserOption();
     void processUserOption(int userOption);
 
-    std::vector<OrderBookEntry> orders;
+    std::string currentTime;
+    OrderBook orderBook{"20200317.csv"};
 
 };
