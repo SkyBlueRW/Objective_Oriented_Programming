@@ -19,6 +19,10 @@ public:
 	/** returns the next time after the sent time in the order book*/
 	std::string getNextTime(std::string timestamp);
 
+	void insertOrder(OrderBookEntry& order);
+
+	std::vector<OrderBookEntry> matchAsksToBids(std::string product, std::string timestamp);
+
 	static double getHighPrice(std::vector<OrderBookEntry>& orders);
 	static double getLowPrice(std::vector<OrderBookEntry>& orders);
 	static double getMeanPrice(std::vector<OrderBookEntry>& orders);
